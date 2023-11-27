@@ -4,6 +4,7 @@ import UserAlbums from './components/UserAlbums/UserAlbums';
 import UserPosts from './components/UserPosts/UserPosts';
 import UsersList from './components/UsersList/UsersList';
 import {BrowserRouter as Router} from 'react-router-dom';
+import {HelmetProvider} from "react-helmet-async";
 
 interface User {
     id: number;
@@ -24,15 +25,17 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <Router>
-            <div>
-                <Routes>
-                    <Route path="/" element={<UsersList users={users}/>}/>
-                    <Route path="/posts/:userId" element={<UserPosts/>}/>
-                    <Route path="/albums/:userId" element={<UserAlbums/>}/>
-                </Routes>
-            </div>
-        </Router>
+        <HelmetProvider>
+            <Router>
+                <div>
+                    <Routes>
+                        <Route path="/" element={<UsersList users={users}/>}/>
+                        <Route path="/posts/:userId" element={<UserPosts/>}/>
+                        <Route path="/albums/:userId" element={<UserAlbums/>}/>
+                    </Routes>
+                </div>
+            </Router>
+        </HelmetProvider>
     );
 };
 

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Helmet } from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 
 interface User {
@@ -11,8 +12,8 @@ interface UsersListProps {
 }
 
 const UsersList: React.FC<UsersListProps> = ({users}) => {
-     const [searchTerm, setSearchTerm] = useState<string>('');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
     // Функція для сортування за ім'ям користувача
     const sortUsers = () => {
         const sortedUsers = users.slice().sort((a, b) => {
@@ -37,6 +38,10 @@ const UsersList: React.FC<UsersListProps> = ({users}) => {
 
     return (
         <div>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>User List</title>
+            </Helmet>
             <input
                 type="text"
                 placeholder="Search by username"
