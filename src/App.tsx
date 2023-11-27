@@ -2,16 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import UserAlbums from './components/UserAlbums/UserAlbums';
 import UserPosts from './components/UserPosts/UserPosts';
-import UsersList from './components/UsersList/UsersList';
-import {BrowserRouter as Router} from 'react-router-dom';
+import UsersList, {User} from './components/UsersList/UsersList';
+import { HashRouter as Router } from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
 import AlbumDetail from "./components/AlbumDetail/AlbumDetail";
 import PostDetail from "./components/PostDetail/PostDetail";
 
-interface User {
-    id: number;
-    username: string;
-}
 
 const App: React.FC = () => {
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 
-interface User {
+export interface User {
     id: number;
     username: string;
 }
@@ -39,7 +39,6 @@ const UsersList: React.FC<UsersListProps> = ({users}) => {
     return (
         <div>
             <Helmet>
-                <meta charSet="utf-8" />
                 <title>User List</title>
             </Helmet>
             <input
@@ -55,9 +54,10 @@ const UsersList: React.FC<UsersListProps> = ({users}) => {
             <ul>
                 {sortedAndFilteredUsers.map((user) => (
                     <li key={user.id}>
-                        <Link to={`/posts/${user.id}`}>{user.username}'s пости</Link>
+                        <h4>{user.username}</h4>
+                        <Link to={`/posts/${user.id}`}>All posts</Link>
                         {' | '}
-                        <Link to={`/albums/${user.id}`}>{user.username}'s альбоми</Link>
+                        <Link to={`/albums/${user.id}`}>All albums</Link>
                     </li>
                 ))}
             </ul>
