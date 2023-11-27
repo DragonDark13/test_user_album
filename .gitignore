@@ -25,3 +25,4 @@ yarn-error.log*
 /.idea/git_toolbox_prj.xml
 /.idea/jsLibraryMappings.xml
 /.idea
+/.idea/*.*
