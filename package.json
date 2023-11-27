@@ -23,7 +23,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-webpack": "webpack-dev-server --open",
-    "build-webpack": "webpack"
+    "build-webpack": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "npm run copy-public && npm run build && gh-pages -d dist -b gh-pages && npm run clean && npm run removeBundles",
+    "copy-public": "xcopy /s public dist",
+    "clean": "for %i in (dist\\*) do if not %i == dist\\bundle.js del %i",
+    "removeBundles": "rmdir /s /q  build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +49,9 @@
     ]
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "gh-pages": "^6.1.0",
+    "rimraf": "^5.0.5",
     "ts-loader": "^9.5.1",
     "typescript": "^3.2.1 || ^4",
     "webpack": "^5.89.0",
