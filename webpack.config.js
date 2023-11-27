@@ -1,7 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.tsx', // Шлях до вашого головного файлу TypeScript
+  mode: 'development', // або 'production' або 'none'
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

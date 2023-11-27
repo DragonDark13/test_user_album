@@ -6,13 +6,14 @@ import UsersList from './components/UsersList/UsersList';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 interface User {
-  id: number;
-  username: string;
+    id: number;
+    username: string;
 }
 
 const App: React.FC = () => {
 
-  const [users, setUsers] = useState<User[]>([]);
+
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
         // Завантажити дані користувачів з API
@@ -26,7 +27,7 @@ const App: React.FC = () => {
         <Router>
             <div>
                 <Routes>
-                    <Route path="/" element={ <UsersList users={users} />}/>
+                    <Route path="/" element={<UsersList users={users}/>}/>
                     <Route path="/posts/:userId" element={<UserPosts/>}/>
                     <Route path="/albums/:userId" element={<UserAlbums/>}/>
                 </Routes>
