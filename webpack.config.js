@@ -1,12 +1,11 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    mode: 'production',
+    mode: "development",
     entry: './src/index.tsx', // Шлях до вашого головного файлу TypeScript
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
     module: {
@@ -18,13 +17,6 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                {from: "public", to: "."},
-            ],
-        }),
-    ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
