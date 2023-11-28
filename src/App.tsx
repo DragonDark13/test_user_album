@@ -15,7 +15,6 @@ const App: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
-        // Завантажити дані користувачів з API
         fetch('https://jsonplaceholder.typicode.com/users')
             .then((response) => response.json())
             .then((data: User[]) => setUsers(data))

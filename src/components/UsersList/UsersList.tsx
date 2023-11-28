@@ -14,7 +14,6 @@ interface UsersListProps {
 const UsersList: React.FC<UsersListProps> = ({users}) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-    // Функція для сортування за ім'ям користувача
     const sortUsers = () => {
         const sortedUsers = users.slice().sort((a, b) => {
             const nameA = a.username.toLowerCase();
