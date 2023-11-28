@@ -24,7 +24,7 @@
     "eject": "react-scripts eject",
     "start-webpack": "webpack-dev-server --open",
     "build-webpack":  "webpack",
-    "predeploy": "webpack --mode=production",
+    "predeploy": "webpack --config webpack.prod.config.js",
     "addBuild": "git add build && git commit --no-verify -m",
     "pushToProd": "git subtree push --prefix build origin prod"
   },
