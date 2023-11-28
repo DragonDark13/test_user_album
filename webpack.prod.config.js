@@ -6,7 +6,7 @@ module.exports = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         clean: true,
     },
     module: {
@@ -18,6 +18,13 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                {from: "public", to: "."},
+            ],
+        }),
+    ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },

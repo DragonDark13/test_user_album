@@ -24,11 +24,9 @@
     "eject": "react-scripts eject",
     "start-webpack": "webpack-dev-server --open",
     "build-webpack": "webpack",
-    "predeploy": "npm run build",
-    "deploy": "npm run copy-public && npm run build && gh-pages -d dist -b gh-pages && npm run clean && npm run removeBundles",
-    "copy-public": "xcopy /s public dist",
-    "clean": "for %i in (dist\\*) do if not %i == dist\\bundle.js del %i",
-    "removeBundles": "rmdir /s /q  build"
+    "predeploy2": "webpack --config webpack.prod.config.js",
+    "addBuild": "git add build && git commit --no-verify -m",
+    "pushToProd": "git subtree push --prefix build origin prod"
   },
   "eslintConfig": {
     "extends": [
@@ -49,9 +47,7 @@
     ]
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^4.0.0",
-    "gh-pages": "^6.1.0",
-    "rimraf": "^5.0.5",
+    "copy-webpack-plugin": "^11.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^3.2.1 || ^4",
     "webpack": "^5.89.0",
