@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import { Helmet } from 'react-helmet-async';
-import {Link} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
+import {useNavigate} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 export interface User {
     id: number;
@@ -12,28 +13,38 @@ interface UsersListProps {
 }
 
 const UsersList: React.FC<UsersListProps> = ({users}) => {
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
+    const [searchTerm, setSearchTerm] = useState<string>(queryParams.get('search') || '');
+
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+    const navigate = useNavigate();
+
+
     const sortUsers = () => {
-        const sortedUsers = users.slice().sort((a, b) => {
+        return users.slice().sort((a, b) => {
             const nameA = a.username.toLowerCase();
             const nameB = b.username.toLowerCase();
 
-            if (sortDirection === 'asc') {
-                return nameA.localeCompare(nameB);
-            } else {
-                return nameB.localeCompare(nameA);
-            }
+            return sortDirection === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
         });
-
-        return sortedUsers;
     };
 
-    // Отримайте відсортований та відфільтрований список користувачів
     const sortedAndFilteredUsers = sortUsers().filter((user) =>
-        (user as { username: string }).username.toLowerCase().includes(searchTerm.toLowerCase())
+        user.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    useEffect(() => {
+        const newParams = new URLSearchParams();
+        if (searchTerm) {
+            newParams.set('search', searchTerm);
+        }
+
+        // Update the URL with the new query parameters
+        navigate(`?${newParams.toString()}`, {replace: true});
+    }, [searchTerm, navigate]);
 
     return (
         <div>
